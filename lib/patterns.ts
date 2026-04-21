@@ -98,7 +98,7 @@ export const PATTERNS: readonly PatternMeta[] = [
     target: "オタク親和 / 元気系",
     lang: "JP",
     row: 2,
-    status: "coming-soon",
+    status: "done",
   },
   {
     slug: "polaroid-wall",
