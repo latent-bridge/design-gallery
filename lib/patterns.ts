@@ -88,7 +88,7 @@ export const PATTERNS: readonly PatternMeta[] = [
     target: "国内・和モダン好み",
     lang: "JP",
     row: 2,
-    status: "coming-soon",
+    status: "done",
   },
   {
     slug: "shoujo-comic",
