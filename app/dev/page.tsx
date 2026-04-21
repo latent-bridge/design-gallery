@@ -1,13 +1,22 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { PATTERNS } from "@/lib/patterns";
+import { PATTERNS, implementedPatterns } from "@/lib/patterns";
 import { DevPatternCard } from "@/components/DevPatternCard";
 
-// Internal dev view: all 15 patterns with status badges, counter, progress notes.
-// Not linked from the customer-facing / index — share URL directly when needed.
+// Internal preview. Content is kept "safe-if-stumbled-on": no segment /
+// gender framing, no backlog reveal (coming-soon cards hidden), just a
+// neutral "n of N directions ready" indicator. noindex so search engines
+// don't surface it.
+
+export const metadata: Metadata = {
+  title: "Design Gallery — Internal Preview",
+  robots: { index: false, follow: false },
+};
 
 export default function DevIndexPage() {
-  const done = PATTERNS.filter((p) => p.status === "done").length;
+  const visible = implementedPatterns();
   const wip = PATTERNS.filter((p) => p.status === "in-progress").length;
+  const done = PATTERNS.filter((p) => p.status === "done").length;
 
   return (
     <div className="px-6 md:px-10 py-10 md:py-14 max-w-[1400px] mx-auto">
@@ -21,7 +30,7 @@ export default function DevIndexPage() {
               color: "var(--gallery-ink-faint)",
             }}
           >
-            CATALOG · v2 · FEMININE DIRECTION · DEV
+            INTERNAL PREVIEW
           </div>
           <div
             className="font-mono"
@@ -31,44 +40,25 @@ export default function DevIndexPage() {
               color: "var(--gallery-ink-faint)",
             }}
           >
-            {done} DONE · {wip} WIP · {PATTERNS.length} TOTAL
+            {done} / {PATTERNS.length} READY
+            {wip > 0 ? ` · ${wip} IN PROGRESS` : ""}
           </div>
         </div>
         <h1
           className="text-[32px] md:text-[44px] font-extrabold leading-tight mb-4"
           style={{ color: "var(--gallery-ink)", letterSpacing: "-0.02em" }}
         >
-          配信者ファンサイト — デザイン 15 案 <span style={{ color: "var(--gallery-accent)" }}>(DEV)</span>
+          配信者ファンサイト デザインギャラリー
         </h1>
         <p
-          className="text-[14px] md:text-[15px] leading-relaxed max-w-[820px]"
+          className="text-[14px] md:text-[15px] leading-relaxed max-w-[720px]"
           style={{ color: "var(--gallery-ink-muted)" }}
         >
-          中堅女性配信者を想定した、公式ファンサイトの方向性探索 15 案。
-          <b>かわいい／上品／文学的／和／少女漫画／カフェ／ランウェイ</b>{" "}
-          などフェミニン寄りのビジュアル言語で作成。
-          各案をクリックすると、その案の世界観で作り込まれた個別サイトに入れます (実装済みのみ)。
-          ページ構成・導線・タイポは案ごとに独立しており、共通のシェルは最小限。
+          配信者ファンサイトのデザイン案を複数の方向性でご用意しています。各案をクリックすると、HOME / SCHEDULE / ARCHIVE の 3 画面を実寸でご覧いただけます。
         </p>
 
         <div
-          className="mt-6 p-4 max-w-[820px]"
-          style={{
-            background: "var(--gallery-highlight)",
-            borderLeft: "3px solid var(--gallery-accent)",
-            fontSize: 12,
-            lineHeight: 1.55,
-            color: "#5a4a2a",
-            fontFamily: "ui-monospace, monospace",
-          }}
-        >
-          ▸ STATUS: 1 パターンずつ順次実装中。カードが COMING SOON のものはまだ作業前。
-          順序は番号通り (01 → 15)。各案の標準ページは HOME / SCHEDULE / ARCHIVE の 3 ページから
-          始め、案ごとに固有ページを追加・差し替え可。
-        </div>
-
-        <div
-          className="mt-4 max-w-[820px]"
+          className="mt-4"
           style={{
             fontSize: 11,
             color: "var(--gallery-ink-faint)",
@@ -76,19 +66,19 @@ export default function DevIndexPage() {
             letterSpacing: 1,
           }}
         >
-          ▸ INTERNAL VIEW · 顧客向けは{" "}
+          公開用は{" "}
           <Link
             href="/"
             style={{ color: "var(--gallery-ink)", textDecoration: "underline" }}
           >
             /
           </Link>
-          {" "}(実装済みのみ表示)
+          。こちらは status バッジ + 進捗カウンタ付きの内部ビューです。
         </div>
       </header>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-        {PATTERNS.map((p) => (
+        {visible.map((p) => (
           <DevPatternCard key={p.slug} pattern={p} />
         ))}
       </div>
@@ -103,7 +93,7 @@ export default function DevIndexPage() {
           letterSpacing: 1.5,
         }}
       >
-        <span>FAN SITE DESIGN GALLERY · DEV</span>
+        <span>FAN SITE DESIGN GALLERY · INTERNAL</span>
         <span>LATENT BRIDGE</span>
       </footer>
     </div>
