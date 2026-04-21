@@ -25,7 +25,7 @@ export default function PastelDiaryArchivePage() {
   }, [active]);
 
   return (
-    <main style={{ maxWidth: 1200, margin: "0 auto", padding: "0 40px" }}>
+    <main className="max-w-[1200px] mx-auto px-5 md:px-10">
       <header style={{ padding: "40px 0 24px", position: "relative" }}>
         <div
           style={{

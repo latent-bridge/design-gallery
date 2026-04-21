@@ -9,7 +9,7 @@ import {
 
 export default function PastelDiarySchedulePage() {
   return (
-    <main style={{ maxWidth: 1000, margin: "0 auto", padding: "0 40px" }}>
+    <main className="max-w-[1000px] mx-auto px-5 md:px-10">
       <header style={{ padding: "40px 0 32px" }}>
         <div
           style={{
@@ -77,21 +77,17 @@ export default function PastelDiarySchedulePage() {
           return (
             <article
               key={s.day}
+              className="grid grid-cols-[70px_1fr] md:grid-cols-[120px_1fr] gap-4 md:gap-6 px-4 md:px-8 py-4 md:py-5 items-start"
               style={{
-                display: "grid",
-                gridTemplateColumns: "120px 1fr",
-                gap: 24,
-                padding: "20px 32px",
                 borderBottom: `1px dashed ${PALETTE.inkSoft}`,
-                alignItems: "start",
                 opacity: isOff ? 0.55 : 1,
               }}
             >
               <div>
                 <div
+                  className="text-[24px] md:text-[32px]"
                   style={{
                     fontFamily: FONTS.handwriting,
-                    fontSize: 32,
                     color: PALETTE.burgundy,
                     lineHeight: 1,
                   }}
@@ -122,9 +118,9 @@ export default function PastelDiarySchedulePage() {
                   }}
                 >
                   <h2
+                    className="text-[18px] md:text-[22px]"
                     style={{
                       fontFamily: FONTS.serif,
-                      fontSize: 22,
                       color: PALETTE.inkDeep,
                       fontWeight: 400,
                       margin: 0,
