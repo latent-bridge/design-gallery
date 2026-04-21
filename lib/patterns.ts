@@ -78,7 +78,7 @@ export const PATTERNS: readonly PatternMeta[] = [
     target: "日常系・居心地派",
     lang: "JP/EN",
     row: 2,
-    status: "coming-soon",
+    status: "done",
   },
   {
     slug: "tea-house",
