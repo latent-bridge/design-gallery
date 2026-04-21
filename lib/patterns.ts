@@ -48,7 +48,7 @@ export const PATTERNS: readonly PatternMeta[] = [
     target: "アパレル寄り・洗練",
     lang: "EN",
     row: 1,
-    status: "coming-soon",
+    status: "done",
   },
   {
     slug: "notebook",
