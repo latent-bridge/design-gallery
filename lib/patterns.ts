@@ -38,7 +38,7 @@ export const PATTERNS: readonly PatternMeta[] = [
     target: "国内・ゆるカワ / 親近感重視",
     lang: "JP",
     row: 1,
-    status: "coming-soon",
+    status: "done",
   },
   {
     slug: "lookbook",
