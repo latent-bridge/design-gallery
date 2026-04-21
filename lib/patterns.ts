@@ -28,7 +28,7 @@ export const PATTERNS: readonly PatternMeta[] = [
     target: "収集癖・古参ファン",
     lang: "JP",
     row: 1,
-    status: "coming-soon",
+    status: "done",
   },
   {
     slug: "mochi-house",
