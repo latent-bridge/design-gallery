@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { PatternMeta } from "@/lib/patterns";
+import { PatternThumbnail } from "./PatternThumbnail";
 
 export function PatternCard({ pattern }: { pattern: PatternMeta }) {
   const isDone = pattern.status === "done";
@@ -29,18 +30,24 @@ export function PatternCard({ pattern }: { pattern: PatternMeta }) {
         <StatusBadge status={pattern.status} />
       </div>
 
-      <div
-        className="aspect-[16/10] mb-4 flex items-center justify-center"
-        style={{
-          background: `repeating-linear-gradient(135deg, #e8e4dc, #e8e4dc 12px, rgba(0,0,0,0.04) 12px, rgba(0,0,0,0.04) 24px)`,
-          border: `1px solid var(--gallery-border)`,
-          color: "var(--gallery-ink-faint)",
-          fontSize: 11,
-        }}
-      >
-        <span className="font-mono">
-          {isDone ? "PREVIEW" : isInProgress ? "WIP" : "COMING SOON"}
-        </span>
+      <div className="mb-4">
+        {isDone ? (
+          <PatternThumbnail slug={pattern.slug} name={pattern.name} />
+        ) : (
+          <div
+            className="aspect-[16/10] flex items-center justify-center"
+            style={{
+              background: `repeating-linear-gradient(135deg, #e8e4dc, #e8e4dc 12px, rgba(0,0,0,0.04) 12px, rgba(0,0,0,0.04) 24px)`,
+              border: `1px solid var(--gallery-border)`,
+              color: "var(--gallery-ink-faint)",
+              fontSize: 11,
+            }}
+          >
+            <span className="font-mono">
+              {isInProgress ? "WIP" : "COMING SOON"}
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="flex items-center gap-2 mb-2">
