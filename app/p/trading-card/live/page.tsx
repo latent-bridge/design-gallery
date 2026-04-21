@@ -46,8 +46,12 @@ function Hero() {
         {streamer.tagline}
       </p>
       <div className="mt-5 flex gap-3 items-center flex-wrap">
-        <PixelButton filled>NEW CARDS →</PixelButton>
-        <PixelButton>COLLECTION 見る</PixelButton>
+        <PixelButton filled href="/p/trading-card/live/archive">
+          NEW CARDS →
+        </PixelButton>
+        <PixelButton href="/p/trading-card/live/archive">
+          COLLECTION 見る
+        </PixelButton>
       </div>
     </section>
   );
@@ -303,7 +307,8 @@ function NextDropCta() {
           </div>
         </div>
         <div>
-          <div
+          <Link
+            href="/p/trading-card/live/schedule"
             style={{
               display: "inline-block",
               padding: "12px 24px",
@@ -315,10 +320,11 @@ function NextDropCta() {
               letterSpacing: 1.5,
               border: `2px solid ${PALETTE.accentPink}`,
               boxShadow: "4px 4px 0 rgba(255,255,255,0.15)",
+              textDecoration: "none",
             }}
           >
             SET REMINDER →
-          </div>
+          </Link>
         </div>
       </div>
     </section>

@@ -179,8 +179,10 @@ export default function PastelDiarySchedulePage() {
       </div>
 
       <div style={{ marginTop: 32, display: "flex", gap: 16, alignItems: "center", flexWrap: "wrap" }}>
-        <PinkPill>来週の予定を見る →</PinkPill>
-        <DashedLink>📮 配信リクエストを送る</DashedLink>
+        <PinkPill href="/p/pastel-diary/live">HOME に戻る →</PinkPill>
+        <DashedLink href="/p/pastel-diary/live/archive">
+          過去のアーカイブを見る
+        </DashedLink>
       </div>
     </main>
   );

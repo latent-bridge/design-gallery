@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PALETTE, FONTS, CATEGORIES, type Category } from "./data";
 
 export function SectionHeader({ en, jp }: { en: string; jp: string }) {
@@ -30,42 +31,56 @@ export function SectionHeader({ en, jp }: { en: string; jp: string }) {
 export function PinkPill({
   children,
   small,
+  href,
 }: {
   children: React.ReactNode;
   small?: boolean;
+  href?: string;
 }) {
-  return (
-    <span
-      style={{
-        display: "inline-block",
-        padding: small ? "9px 20px" : "12px 26px",
-        background: PALETTE.pink,
-        color: "#fff",
-        borderRadius: 30,
-        fontSize: small ? 12 : 13,
-        boxShadow: "0 2px 0 rgba(0,0,0,0.05)",
-        cursor: "pointer",
-      }}
-    >
-      {children}
-    </span>
-  );
+  const style = {
+    display: "inline-block",
+    padding: small ? "9px 20px" : "12px 26px",
+    background: PALETTE.pink,
+    color: "#fff",
+    borderRadius: 30,
+    fontSize: small ? 12 : 13,
+    boxShadow: "0 2px 0 rgba(0,0,0,0.05)",
+    cursor: "pointer",
+    textDecoration: "none",
+  } as const;
+  if (href) {
+    return (
+      <Link href={href} style={style}>
+        {children}
+      </Link>
+    );
+  }
+  return <span style={style}>{children}</span>;
 }
 
-export function DashedLink({ children }: { children: React.ReactNode }) {
-  return (
-    <span
-      style={{
-        fontSize: 13,
-        color: PALETTE.inkMuted,
-        borderBottom: `1px dashed ${PALETTE.inkFaint}`,
-        paddingBottom: 2,
-        cursor: "pointer",
-      }}
-    >
-      {children}
-    </span>
-  );
+export function DashedLink({
+  children,
+  href,
+}: {
+  children: React.ReactNode;
+  href?: string;
+}) {
+  const style = {
+    fontSize: 13,
+    color: PALETTE.inkMuted,
+    borderBottom: `1px dashed ${PALETTE.inkFaint}`,
+    paddingBottom: 2,
+    cursor: "pointer",
+    textDecoration: "none",
+  } as const;
+  if (href) {
+    return (
+      <Link href={href} style={style}>
+        {children}
+      </Link>
+    );
+  }
+  return <span style={style}>{children}</span>;
 }
 
 export type Tone = "rose" | "cream" | "sage" | "lavender";

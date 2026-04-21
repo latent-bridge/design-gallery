@@ -62,7 +62,9 @@ function HeroSection() {
           {DIARY.streamer.tagline}
         </p>
         <div className="mt-7 flex gap-4 items-center flex-wrap">
-          <PinkPill>今日の配信を見る →</PinkPill>
+          <PinkPill href="/p/pastel-diary/live/schedule">
+            今日の配信を見る →
+          </PinkPill>
           <DashedLink>📮 お手紙を書く</DashedLink>
         </div>
       </div>
@@ -153,8 +155,12 @@ function TonightSection() {
               {nextStream.note}
             </p>
             <div style={{ marginTop: 20, display: "flex", gap: 12 }}>
-              <PinkPill small>リマインドする</PinkPill>
-              <DashedLink>カレンダーに追加</DashedLink>
+              <PinkPill small href="/p/pastel-diary/live/schedule">
+                リマインドする
+              </PinkPill>
+              <DashedLink href="/p/pastel-diary/live/schedule">
+                カレンダーに追加
+              </DashedLink>
             </div>
           </div>
         </TapedCard>

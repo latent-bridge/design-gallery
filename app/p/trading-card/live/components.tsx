@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PALETTE, FONTS, RARITY_CONFIG, type Card, type Rarity } from "./data";
 
 const TONE_FILLS: Record<Card["tone"], string> = {
@@ -215,30 +216,35 @@ export function Counter({
 export function PixelButton({
   children,
   filled,
+  href,
 }: {
   children: React.ReactNode;
   filled?: boolean;
+  href?: string;
 }) {
-  return (
-    <span
-      style={{
-        display: "inline-block",
-        padding: "10px 22px",
-        background: filled ? PALETTE.ink : "transparent",
-        color: filled ? PALETTE.accentPink : PALETTE.ink,
-        border: `2px solid ${PALETTE.ink}`,
-        borderRadius: 0,
-        fontWeight: 700,
-        fontSize: 12,
-        fontFamily: FONTS.mono,
-        letterSpacing: 1.5,
-        cursor: "pointer",
-        boxShadow: filled ? "4px 4px 0 rgba(42,26,58,0.15)" : "none",
-      }}
-    >
-      {children}
-    </span>
-  );
+  const style = {
+    display: "inline-block",
+    padding: "10px 22px",
+    background: filled ? PALETTE.ink : "transparent",
+    color: filled ? PALETTE.accentPink : PALETTE.ink,
+    border: `2px solid ${PALETTE.ink}`,
+    borderRadius: 0,
+    fontWeight: 700,
+    fontSize: 12,
+    fontFamily: FONTS.mono,
+    letterSpacing: 1.5,
+    cursor: "pointer",
+    boxShadow: filled ? "4px 4px 0 rgba(42,26,58,0.15)" : "none",
+    textDecoration: "none",
+  } as const;
+  if (href) {
+    return (
+      <Link href={href} style={style}>
+        {children}
+      </Link>
+    );
+  }
+  return <span style={style}>{children}</span>;
 }
 
 export function SectionHeader({
