@@ -19,72 +19,21 @@ export default function DevIndexPage() {
   const done = PATTERNS.filter((p) => p.status === "done").length;
 
   return (
-    <div className="px-6 md:px-10 py-10 md:py-14 max-w-[1400px] mx-auto">
-      <header className="mb-10 md:mb-14">
-        <div className="flex items-baseline justify-between gap-3 flex-wrap mb-3">
-          <div
-            className="font-mono"
-            style={{
-              fontSize: 11,
-              letterSpacing: 3,
-              color: "var(--gallery-ink-faint)",
-            }}
-          >
-            INTERNAL PREVIEW
-          </div>
-          <div
-            className="font-mono"
-            style={{
-              fontSize: 11,
-              letterSpacing: 2,
-              color: "var(--gallery-ink-faint)",
-            }}
-          >
-            {done} / {PATTERNS.length} READY
-            {wip > 0 ? ` · ${wip} IN PROGRESS` : ""}
-          </div>
-        </div>
-        <h1
-          className="text-[32px] md:text-[44px] font-extrabold leading-tight mb-4"
-          style={{ color: "var(--gallery-ink)", letterSpacing: "-0.02em" }}
-        >
-          配信者ファンサイト デザインギャラリー
-        </h1>
-        <p
-          className="text-[14px] md:text-[15px] leading-relaxed max-w-[720px]"
-          style={{ color: "var(--gallery-ink-muted)" }}
-        >
-          配信者ファンサイトのデザイン案を複数の方向性でご用意しています。各案をクリックすると、HOME / SCHEDULE / ARCHIVE の 3 画面を実寸でご覧いただけます。
-        </p>
+    <div className="px-5 md:px-10 py-10 md:py-16 max-w-[1400px] mx-auto">
+      <DevHeader
+        done={done}
+        wip={wip}
+        total={PATTERNS.length}
+      />
 
-        <div
-          className="mt-4"
-          style={{
-            fontSize: 11,
-            color: "var(--gallery-ink-faint)",
-            fontFamily: "ui-monospace, monospace",
-            letterSpacing: 1,
-          }}
-        >
-          公開用は{" "}
-          <Link
-            href="/"
-            style={{ color: "var(--gallery-ink)", textDecoration: "underline" }}
-          >
-            /
-          </Link>
-          。こちらは status バッジ + 進捗カウンタ付きの内部ビューです。
-        </div>
-      </header>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
         {visible.map((p) => (
           <DevPatternCard key={p.slug} pattern={p} />
         ))}
       </div>
 
       <footer
-        className="mt-16 pt-6 flex items-center justify-between"
+        className="mt-16 md:mt-20 pt-6 flex items-center justify-between"
         style={{
           borderTop: "1px solid var(--gallery-border)",
           fontSize: 11,
@@ -97,5 +46,98 @@ export default function DevIndexPage() {
         <span>LATENT BRIDGE</span>
       </footer>
     </div>
+  );
+}
+
+function DevHeader({
+  done,
+  wip,
+  total,
+}: {
+  done: number;
+  wip: number;
+  total: number;
+}) {
+  return (
+    <header className="mb-12 md:mb-16 max-w-[820px]">
+      <div
+        className="flex items-baseline justify-between gap-3 flex-wrap font-mono mb-6 md:mb-8"
+        style={{
+          fontSize: 10,
+          letterSpacing: "0.3em",
+          color: "var(--gallery-ink-faint)",
+          textTransform: "uppercase",
+        }}
+      >
+        <span>internal preview</span>
+        <span>
+          {done} / {total} ready{wip > 0 ? ` · ${wip} in progress` : ""}
+        </span>
+      </div>
+
+      <h1
+        className="jp-keep"
+        style={{
+          fontFamily:
+            '"Zen Kaku Gothic New", "Noto Sans JP", system-ui, sans-serif',
+          fontWeight: 900,
+          fontSize: "clamp(32px, 6.2vw, 56px)",
+          letterSpacing: "-0.04em",
+          lineHeight: 1.15,
+          color: "var(--gallery-ink)",
+          margin: 0,
+          marginBottom: 22,
+        }}
+      >
+        <span className="inline-block" style={{ whiteSpace: "nowrap" }}>
+          配信者ファンサイト
+        </span>{" "}
+        <span className="inline-block" style={{ whiteSpace: "nowrap" }}>
+          デザインギャラリー
+        </span>
+      </h1>
+
+      <div
+        style={{
+          width: 48,
+          height: 2,
+          background: "var(--gallery-ink)",
+          marginBottom: 22,
+        }}
+      />
+
+      <p
+        className="jp-keep"
+        style={{
+          fontSize: 15,
+          lineHeight: 1.9,
+          color: "var(--gallery-ink-muted)",
+          maxWidth: 620,
+          margin: 0,
+        }}
+      >
+        配信者ファンサイトのデザイン案を複数の方向性でご用意しています。各案をクリックすると、HOME
+        / SCHEDULE / ARCHIVE の 3 画面を実寸でご覧いただけます。
+      </p>
+
+      <div
+        className="mt-5"
+        style={{
+          fontSize: 11,
+          color: "var(--gallery-ink-faint)",
+          fontFamily: "ui-monospace, monospace",
+          letterSpacing: 1,
+        }}
+      >
+        公開用は{" "}
+        <Link
+          href="/"
+          style={{ color: "var(--gallery-ink)", textDecoration: "underline" }}
+        >
+          /
+        </Link>
+        。こちらは status バッジ + 進捗カウンタ付きの内部ビューです。
+      </div>
+    </header>
   );
 }

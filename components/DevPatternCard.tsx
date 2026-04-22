@@ -53,8 +53,17 @@ export function DevPatternCard({ pattern }: { pattern: PatternMeta }) {
         )}
       </div>
 
-      <div className="flex items-center gap-2 mb-2">
-        <h3 className="text-[17px] font-bold" style={{ color: "var(--gallery-ink)" }}>
+      <div className="flex items-center gap-2 mb-2 flex-wrap">
+        <h3
+          className="jp-keep"
+          style={{
+            color: "var(--gallery-ink)",
+            fontSize: 18,
+            fontWeight: 800,
+            letterSpacing: "-0.015em",
+            lineHeight: 1.35,
+          }}
+        >
           {pattern.name}
         </h3>
         <span
@@ -72,15 +81,24 @@ export function DevPatternCard({ pattern }: { pattern: PatternMeta }) {
       </div>
 
       <p
-        className="text-[13px] leading-relaxed mb-3"
-        style={{ color: "var(--gallery-ink-muted)" }}
+        className="jp-keep mb-3"
+        style={{
+          color: "var(--gallery-ink-muted)",
+          fontSize: 13,
+          lineHeight: 1.75,
+        }}
       >
         {pattern.direction}
       </p>
 
       <div
-        className="text-[11px] italic"
-        style={{ color: "var(--gallery-ink-faint)" }}
+        className="jp-keep"
+        style={{
+          color: "var(--gallery-ink-faint)",
+          fontSize: 11,
+          letterSpacing: "0.02em",
+          fontStyle: "italic",
+        }}
       >
         → {pattern.target}
       </div>
